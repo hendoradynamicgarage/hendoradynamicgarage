@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HDG - Hendora Dynamic Garage</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<style>
+body{
+cursor:none;
+}
+
+/* CURSOR SETIR */
+.steer-cursor{
+position:fixed;
+top:0;
+left:0;
+transform:translate(-50%, -50%);
+pointer-events:none;
+z-index:9999;
+transition:transform 0.05s linear;
+filter: drop-shadow(0 0 6px cyan)
+        drop-shadow(0 0 12px magenta)
+        drop-shadow(0 0 20px white);
+}
+</style>
+<style>
+body{
+font-family: Arial, sans-serif;
+}
+
+/* TESTIMONI */
+.testimonial-container{
+overflow:hidden;
+}
+.testimonial-track{
+display:flex;
+gap:20px;
+width:max-content;
+animation:scroll 100s linear infinite;
+}
+@keyframes scroll{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
+}
+/* ===== FLOATING BUTTON PREMIUM ===== */
+.wa-button{
+position:fixed;
+bottom:24px;
+right:24px;
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+color:white;
+padding:16px;
+border-radius:9999px;
+box-shadow:0 10px 25px rgba(37,99,235,0.5);
+transition:all 0.3s ease;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* hover efek glow + scale */
+.wa-button:hover{
+transform:scale(1.15) rotate(-5deg);
+box-shadow:0 0 15px #60a5fa,
+           0 0 30px #3b82f6,
+           0 0 60px #9333ea;
+}
+
+/* efek klik */
+.wa-button:active{
+transform:scale(0.9);
+}
+
+/* animasi pulse halus */
+@keyframes pulseGlow{
+0%{box-shadow:0 0 10px #3b82f6;}
+50%{box-shadow:0 0 25px #9333ea;}
+100%{box-shadow:0 0 10px #3b82f6;}
+}
+
+.wa-button{
+animation:pulseGlow 2s infinite;
+}
+*{
+scroll-behavior:smooth;
+}
+
+button,a{
+transition:all 0.3s ease;
+}
+#mobileMenu{
+transition:all 0.3s ease;
+}
+.testimonial-container:hover .testimonial-track{
+animation-play-state:paused;
+}
+.swiper-slide{
+opacity:0.5;
+transform:scale(0.9);
+transition:all 0.3s ease;
+}
+
+.swiper-slide-active{
+opacity:1;
+transform:scale(1.05);
+}
+</style>
+
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+<!-- CURSOR SETIR -->
+<div id="steerCursor" class="steer-cursor">
+<svg viewBox="0 0 100 100" width="40" height="40">
+  <circle cx="50" cy="50" r="35" stroke="white" stroke-width="6" fill="none"/>
+  <circle cx="50" cy="50" r="10" fill="white"/>
+  <line x1="50" y1="50" x2="50" y2="15" stroke="white" stroke-width="5"/>
+  <line x1="50" y1="50" x2="20" y2="65" stroke="white" stroke-width="5"/>
+  <line x1="50" y1="50" x2="80" y2="65" stroke="white" stroke-width="5"/>
+</svg>
+</div>
+<!-- HEADER -->
+<header class="bg-black text-white sticky top-0 z-50">
+
+<div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+
+<h1 class="text-2xl font-bold flex items-center gap-2">
+?? HDG
+<H2>????·??????·????</H2>
+</h1>
+
+<!-- HAMBURGER BUTTON -->
+<button id="menuBtn" class="md:hidden">
+<svg class="w-8 h-8" fill="none" stroke="white" viewBox="0 0 24 24">
+<path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+d="M4 6h16M4 12h16M4 18h16"/>
+</svg>
+</button>
+
+<!-- MENU -->
+<nav id="menu" class="hidden md:flex gap-6 text-sm">
+
+<a href="#services" class="hover:text-blue-400">?? Layanan</a>
+<a href="#about" class="hover:text-blue-400">?? Tentang</a>
+<a href="#booking" class="hover:text-blue-400">?? Booking</a>
+<a href="#contact" class="hover:text-blue-400">?? Kontak</a>
+
+</nav>
+
+</div>
+
+<!-- MOBILE DROPDOWN -->
+<div id="mobileMenu" class="hidden md:hidden bg-black px-6 pb-4 space-y-3">
+<a href="#services" class="block">?? Layanan</a>
+<a href="#about" class="block">?? Tentang</a>
+<a href="#booking" class="block">?? Booking</a>
+<a href="#contact" class="block">?? Kontak</a>
+</div>
+
+</header>
+
+<!-- HERO -->
+<section class="relative h-[500px] flex items-center justify-center text-center text-white">
+
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" class="absolute inset-0 w-full h-full object-cover">
+
+<div class="absolute inset-0 bg-black/60"></div>
+
+<div class="relative z-10 px-6">
+
+<h2 class="text-4xl md:text-5xl font-bold mb-4">
+Mobil Kusam? Saatnya Kinclong Lagi!
+</h2>
+
+<p class="text-lg mb-6">
+Spesialis Cat • Las • Dempul • Compound Profesional
+</p>
+
+<a href="#booking" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-full shadow-lg transition">
+Booking Sekarang
+</a>
+<br>
+
+</div>
+<br>
+</section>
+<div class="swiper testimonialSwiper px-4">
+
+<div class="swiper-wrapper" id="testimonialWrapper"></div>
+
+<!-- pagination -->
+<div class="swiper-pagination mt-6"></div>
+
+</div>
+<script>
+const testimonials = [
+{nama:"Rizky",mobil:"Civic Turbo",pesan:"Awalnya cat mobil saya kusam banget, setelah di HDG hasilnya kinclong seperti mobil baru keluar showroom. Detailnya rapi, puas banget!"},
+{nama:"Andi",mobil:"Avanza",pesan:"Body mobil saya sempat penyok cukup parah, tapi setelah diperbaiki di sini hasilnya balik seperti semula. Nggak kelihatan bekas sama sekali!"},
+{nama:"Rudi",mobil:"Brio",pesan:"Compound di HDG beda dari tempat lain, baret halus hilang semua dan finishingnya benar-benar glossy. Mantap!"},
+{nama:"Dimas",mobil:"Pajero",pesan:"Pelayanan cepat, hasil rapi, dan harganya masih masuk akal. Sekarang mobil saya kelihatan jauh lebih fresh."},
+{nama:"Fajar",mobil:"Innova",pesan:"Awalnya ragu, tapi ternyata hasilnya melebihi ekspektasi. Catnya halus banget dan warnanya hidup lagi."},
+{nama:"Bayu",mobil:"Fortuner",pesan:"Teknisi di sini kelihatan profesional. Dempul dan pengecatan benar-benar presisi, hasilnya nggak bergelombang sama sekali."},
+{nama:"Hendra",mobil:"Xenia",pesan:"Mobil lama saya jadi kelihatan seperti baru lagi. Bener-bener worth it untuk perawatan di HDG."},
+{nama:"Agus",mobil:"Jazz",pesan:"Saya suka banget sama hasil finishingnya. Kilapnya tahan lama dan terlihat premium."},
+{nama:"Wahyu",mobil:"Ertiga",pesan:"Pengerjaan cepat tapi tetap detail. Jarang ada bengkel yang bisa combine kualitas dan kecepatan seperti ini."},
+{nama:"Ilham",mobil:"HRV",pesan:"Recommended banget buat yang mau mobilnya tampil maksimal lagi. Hasilnya bikin percaya diri di jalan!"}
+];
+
+const wrapper = document.getElementById("testimonialWrapper");
+
+testimonials.forEach((item, index) => {
+wrapper.innerHTML += `
+<div class="swiper-slide">
+<div class="bg-white p-6 rounded-2xl shadow-xl text-center transition hover:scale-105">
+
+<img src="https://i.pravatar.cc/100?img=${index+20}" 
+class="w-16 h-16 rounded-full mx-auto mb-3">
+
+<div class="text-yellow-400 mb-2 text-lg">?????</div>
+
+<p class="text-gray-600 text-sm leading-relaxed">
+"${item.pesan}"
+</p>
+
+<h4 class="font-bold mt-3 text-gray-800">
+${item.nama} - ${item.mobil}
+</h4>
+
+</div>
+</div>
+`;
+});
+</script>
+
+<!-- LAYANAN -->
+<section id="services" class="max-w-6xl mx-auto py-16 px-6">
+
+<h3 class="text-3xl font-bold text-center mb-10">
+Layanan Kami
+</h3>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<!-- CAT -->
+<div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition">
+
+<div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg" class="w-full h-60 object-cover"/>
+</div>
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg" class="w-full h-60 object-cover"/>
+</div>
+
+</div>
+</div>
+
+<div class="text-4xl mb-2">??</div>
+
+<h4 class="text-xl font-bold mb-2">Cat Mobil</h4>
+
+<p class="text-gray-600">
+Finishing halus, warna tajam, dan hasil seperti mobil baru keluar showroom.
+</p>
+
+</div>
+
+<!-- LAS -->
+<div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition">
+
+<div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776544034052-577a12e8-800f-4e85-aa82-980b56e03a76.jpg" class="w-full h-60 object-cover"/>
+</div>
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776544192232-bb2737f6-2471-4a05-a126-001c61454968.jpg" class="w-full h-60 object-cover"/>
+</div>
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776544971395-d2ef2791-9a6b-44e0-9025-ba123ffd4844.jpg" class="w-full h-60 object-cover"/>
+</div>
+
+</div>
+</div>
+
+<div class="text-4xl mb-2">??</div>
+
+<h4 class="text-xl font-bold mb-2">Las Body & Dempul</h4>
+
+<p class="text-gray-600">
+Perbaikan body penyok dan karat dengan teknik presisi dan rapi.
+</p>
+
+</div>
+
+<!-- COMPOUND -->
+<div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition">
+
+<div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776545406236-0e3cdd0c-0bfa-40d7-9de8-18d1fd232c1e.png" class="w-full h-60 object-cover"/>
+</div>
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776545494555-0ed99e57-f861-4a6f-8ac5-2c5fe7579a54.png" class="w-full h-60 object-cover"/>
+</div>
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776545618029-7edcbeec-7584-4e4e-acd6-2b7e99bc19ee.png" class="w-full h-60 object-cover"/>
+</div>
+
+</div>
+</div>
+
+<div class="text-4xl mb-2">?</div>
+
+<h4 class="text-xl font-bold mb-2">Compound & Poles</h4>
+
+<p class="text-gray-600">
+Menghilangkan baret halus dan membuat mobil kembali kinclong maksimal.
+</p>
+
+</div>
+
+</div>
+</section>
+
+<!-- FIXED IMAGE -->
+<div>
+<img src="https://images.unsplash.com/photo-1616455579100-2ceaa4eb2d37" 
+class="w-full h-80 object-cover rounded-xl shadow-lg" 
+alt="Promo Bengkel"/>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="bg-white py-16 px-6 text-center">
+
+<h3 class="text-3xl font-bold mb-6">Kenapa Pilih HDG?</h3>
+
+<p class="text-gray-700 max-w-3xl mx-auto">
+Hendora Dynamic Garage (HDG) adalah bengkel spesialis perawatan dan perbaikan tampilan mobil dengan standar pengerjaan profesional.
+Kami percaya bahwa mobil bukan sekadar kendaraan — tapi juga cerminan karakter pemiliknya.
+Karena itu, setiap detail kami kerjakan dengan presisi, ketelitian, dan finishing maksimal.
+</p>
+
+</section>
+<!-- INFO BODY REPAIR SCROLL -->
+<section class="py-24 bg-gradient-to-br from-blue-600 to-blue-900 hover:scale-110 transition duration-300 
+hover:shadow-[0_0_20px_#3b82f6,0_0_40px_#9333ea">
+
+<h3 class="text-3xl font-bold text-center mb-10 
+bg-gradient-to-r from-white via-[#EF1A2D] to-[#FF00FF]
+bg-clip-text text-transparent">
+Tips & Insight Body Repair ??
+</h3>
+
+<div class="testimonial-container">
+  <div class="testimonial-track"></div>
+</div>
+
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const insights = [
+{
+judul: "Kenapa Cat Mobil Bisa Kusam?",
+isi: "Paparan sinar UV, debu, dan hujan asam adalah penyebab utama cat mobil menjadi pudar dan kusam."
+},
+{
+judul: "Pentingnya Dempul yang Presisi",
+isi: "Dempul yang tidak rata akan membuat permukaan bergelombang dan terlihat saat terkena cahaya."
+},
+{
+judul: "Perbedaan Cat Oven & Biasa",
+isi: "Cat oven menghasilkan finishing lebih halus, kuat, dan tahan lama dibanding cat biasa."
+},
+{
+judul: "Compound vs Poles",
+isi: "Compound digunakan untuk menghilangkan baret, sedangkan poles untuk finishing dan kilap maksimal."
+},
+{
+judul: "Kenapa Warna Bisa Belang?",
+isi: "Kesalahan mixing warna atau teknik semprot yang tidak merata bisa menyebabkan belang."
+},
+{
+judul: "Las Body yang Baik",
+isi: "Las yang rapi tidak hanya kuat tapi juga memudahkan proses finishing dan pengecatan."
+},
+{
+judul: "Tips Merawat Cat Mobil",
+isi: "Cuci rutin, hindari parkir panas, dan lakukan coating agar cat tetap awet."
+},
+{
+judul: "Baret Halus Bisa Hilang?",
+isi: "Ya, dengan teknik compound yang tepat, baret halus bisa dihilangkan tanpa repaint."
+},
+{
+judul: "Kenapa Cat Mengelupas?",
+isi: "Biasanya karena permukaan tidak dibersihkan dengan benar sebelum pengecatan."
+},
+{
+judul: "Finishing Glossy Maksimal",
+isi: "Finishing terbaik didapat dari kombinasi amplas halus, compound, dan poles berkualitas."
+}
+];
+
+const container = document.querySelector(".testimonial-track");
+
+if(container){
+  insights.forEach((item, index) => {
+
+    // mapping gambar berdasarkan judul
+    let img = "";
+
+    if(item.judul.toLowerCase().includes("cat")){
+      img = "https://source.unsplash.com/300x200/?car-paint";
+    } 
+    else if(item.judul.toLowerCase().includes("dempul") || item.judul.toLowerCase().includes("las")){
+      img = "https://source.unsplash.com/300x200/?car-repair";
+    } 
+    else if(item.judul.toLowerCase().includes("compound") || item.judul.toLowerCase().includes("poles")){
+      img = "https://source.unsplash.com/300x200/?car-detailing";
+    } 
+    else {
+      img = "https://source.unsplash.com/300x200/?automotive";
+    }
+
+    container.innerHTML += `
+    <div class="bg-white p-5 rounded-xl shadow min-w-[260px] hover:scale-105 transition">
+
+      <img src="${img}" class="w-full h-32 object-cover rounded-lg mb-3">
+
+      <h4 class="font-bold text-lg mb-2 text-gray-800">
+        ${item.judul}
+      </h4>
+
+      <p class="text-gray-600 text-sm">
+        ${item.isi}
+      </p>
+
+    </div>
+    `;
+  });
+}
+
+});
+</script>
+
+<!-- BOOKING -->
+<section id="booking" class="py-16 bg-gradient-to-br from-blue-600 to-blue-900">
+
+<div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+
+<h2 class="text-2xl font-bold text-center mb-6">
+Booking Service
+</h2>
+
+<form id="bookingForm" class="space-y-4">
+
+<input id="nama" placeholder="Nama" class="w-full border p-3 rounded-lg">
+<input id="wa" placeholder="Alamat" class="w-full border p-3 rounded-lg">
+<input id="mobil" placeholder="Type Kendaraan (contoh : Avanza / 2010)" class="w-full border p-3 rounded-lg">
+
+<select id="layanan" class="w-full border p-3 rounded-lg">
+<option>Cat Mobil</option>
+<option>Cat Sepeda Motor</option>
+<option>Cat Velk Mobil</option>
+<option>Cat Velk Sepeda Motor</option>
+<option>Las & Dempul</option>
+<option>Compound</option>
+</select>
+
+<textarea id="keluhan" placeholder="Sebutkan keluhan disini, lampiran foto dapat dikirim melalui Wa chat admin" class="w-full border p-3 rounded-lg"></textarea>
+
+<button class="w-full bg-green-500 text-white py-3 rounded-lg">
+Booking via WhatsApp
+</button>
+
+</form>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-16 text-center bg-gray-100">
+
+<h3 class="text-3xl font-bold mb-4">Kontak</h3>
+
+<p>?? 0881025173774</p>
+<p>?? Jalan Kyai Walik no. 17 Pagerkukuh. Wonosobo. Jawa Tengah. ID</p>
+  <!-- MAPS LOKASI -->
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div class="rounded-2xl overflow-hidden shadow-lg">
+
+      <iframe 
+        src="https://www.google.com/maps?q=Wonosobo%20Jawa%20Tengah&output=embed"
+        width="100%" 
+        height="400" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+
+    </div>
+
+  </div>
+<div class="text-center mt-6">
+  <a href="https://maps.app.goo.gl/mUzbaBnN4Uv4NHQ96" target="_blank"
+     class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">
+    Buka Spesifik di Google Maps
+  </a>
+</div>
+</section>
+
+<!-- ADVERTISEMENT / PROMO -->
+<section class="py-16 bg-gradient-to-r from-black via-gray-900 to-black text-white">
+
+<div class="max-w-6xl mx-auto px-6">
+
+<h3 class="text-3xl md:text-4xl font-bold text-center mb-4">
+?? Promo Spesial Body Repair HDG
+</h3>
+
+<p class="text-center text-gray-300 mb-10 max-w-2xl mx-auto">
+Buat mobil kamu tampil seperti baru lagi! Nikmati layanan Cat, Las, Dempul, dan Compound 
+dengan hasil premium, pengerjaan rapi, dan harga terbaik.
+</p>
+
+<div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-6 text-center hover:scale-105 transition duration-500">
+
+<div class="swiper mySwiper mb-6 rounded-xl overflow-hidden">
+
+<div class="swiper-wrapper">
+
+<div class="swiper-slide flex items-center justify-center bg-white">
+<img src="https://www.image2url.com/r2/default/images/1776546866715-e7120f06-9341-4a47-913a-9bd53dedc9fd.jpeg"
+class="w-full h-72 object-contain hover:scale-110 transition duration-500"/>
+</div>
+
+<div class="swiper-slide flex items-center justify-center bg-white">
+<img src="https://www.image2url.com/r2/default/images/1776732956420-a03583ab-6ebe-4102-b36c-476847d0f867.jpeg"
+class="w-full h-72 object-contain hover:scale-110 transition duration-500"/>
+</div>
+
+<div class="swiper-slide flex items-center justify-center bg-black">
+<img src="https://www.image2url.com/r2/default/images/1776545618029-7edcbeec-7584-4e4e-acd6-2b7e99bc19ee.png"
+class="w-full h-72 object-contain hover:scale-110 transition duration-500"/>
+</div>
+
+<div class="swiper-slide flex items-center justify-center bg-black">
+<img src="https://www.image2url.com/r2/default/images/1776545618029-7edcbeec-7584-4e4e-acd6-2b7e99bc19ee.png"
+class="w-full h-72 object-contain hover:scale-110 transition duration-500"/>
+</div>
+
+</div>
+
+</div>
+
+<h4 class="text-2xl font-bold mb-3">
+? Hasil Kinclong • Presisi • Tahan Lama
+</h4>
+
+<p class="text-gray-300 mb-6">
+Dari mobil kusam jadi seperti showroom!  
+Kami kerjakan dengan standar profesional dan finishing maksimal.
+</p>
+
+<a href="#booking" 
+class="inline-block bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold shadow-lg 
+hover:scale-110 transition duration-300 
+hover:shadow-[0_0_20px_#3b82f6,0_0_40px_#9333ea]">
+
+?? Booking Sekarang
+
+</a>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-black text-white text-center p-4">
+© 2026 HDG
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/62881025173774"
+class="wa-button animate-bounce">
+
+<svg xmlns="http://www.w3.org/2000/svg" 
+class="w-6 h-6" 
+fill="none" 
+viewBox="0 0 24 24" 
+stroke="currentColor">
+<path stroke-width="2" 
+d="M21 12a9 9 0 11-4.22-7.62L21 3l-1.38 4.38A9 9 0 0121 12z"/>
+</svg>
+
+</a>
+
+<!-- SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+new Swiper(".mySwiper",{loop:true,autoplay:{delay:2500}});
+
+document.getElementById("bookingForm").addEventListener("submit",function(e){
+e.preventDefault();
+let pesan=`Halo HDG, saya ingin booking perbaikan mobil hari ini`;
+window.open(`https://wa.me/62881025173774?text=${pesan}`);
+});
+</script>
+<script>
+const cursor = document.getElementById("steerCursor");
+
+let lastX = 0;
+let lastY = 0;
+
+document.addEventListener("mousemove", (e) => {
+
+let x = e.clientX;
+let y = e.clientY;
+
+// posisi
+cursor.style.left = x + "px";
+cursor.style.top = y + "px";
+
+// hitung arah gerak untuk rotasi setir
+let dx = x - lastX;
+let dy = y - lastY;
+
+let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+// rotasi halus
+cursor.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+
+// simpan posisi terakhir
+lastX = x;
+lastY = y;
+});
+</script>
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", () => {
+mobileMenu.classList.toggle("hidden");
+});
+</script>
+<script>
+new Swiper(".testimonialSwiper", {
+loop: true,
+centeredSlides: true,
+spaceBetween: 20,
+
+autoplay:{
+delay:3000,
+disableOnInteraction:false
+},
+
+breakpoints:{
+0:{slidesPerView:1},
+640:{slidesPerView:2},
+1024:{slidesPerView:3}
+},
+
+pagination:{
+el:".swiper-pagination",
+clickable:true
+}
+});
+</script>
+</body>
+</html>
