@@ -244,21 +244,26 @@ ${item.nama} - ${item.mobil}
 Layanan Kami
 </h3>
 
-<div class="grid md:grid-cols-3 gap-8">
-
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 <!-- CAT -->
-<div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition">
-
+<div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 text-center transition hover:scale-105 w-full">
 <div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
 <div class="swiper-wrapper">
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg" class="w-full h-60 object-cover"/>
+<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg" class="w-full h-60 object-cover"/>
+<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg"
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
+
 
 </div>
 </div>
@@ -280,15 +285,24 @@ Finishing halus, warna tajam, dan hasil seperti mobil baru keluar showroom.
 <div class="swiper-wrapper">
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776544034052-577a12e8-800f-4e85-aa82-980b56e03a76.jpg" class="w-full h-60 object-cover"/>
+<img src="https://www.image2url.com/r2/default/images/1776544034052-577a12e8-800f-4e85-aa82-980b56e03a76.jpg" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
+  </div>
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776544192232-bb2737f6-2471-4a05-a126-001c61454968.jpg" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776544192232-bb2737f6-2471-4a05-a126-001c61454968.jpg" class="w-full h-60 object-cover"/>
-</div>
-
-<div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776544971395-d2ef2791-9a6b-44e0-9025-ba123ffd4844.jpg" class="w-full h-60 object-cover"/>
+<img src="https://www.image2url.com/r2/default/images/1776544971395-d2ef2791-9a6b-44e0-9025-ba123ffd4844.jpg" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 </div>
@@ -311,15 +325,24 @@ Perbaikan body penyok dan karat dengan teknik presisi dan rapi.
 <div class="swiper-wrapper">
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776545406236-0e3cdd0c-0bfa-40d7-9de8-18d1fd232c1e.png" class="w-full h-60 object-cover"/>
+<img src="https://www.image2url.com/r2/default/images/1776545406236-0e3cdd0c-0bfa-40d7-9de8-18d1fd232c1e.png" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776545494555-0ed99e57-f861-4a6f-8ac5-2c5fe7579a54.png" class="w-full h-60 object-cover"/>
+<img src="https://www.image2url.com/r2/default/images/1776545494555-0ed99e57-f861-4a6f-8ac5-2c5fe7579a54.png" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776545618029-7edcbeec-7584-4e4e-acd6-2b7e99bc19ee.png" class="w-full h-60 object-cover"/>
+<img src="https://www.image2url.com/r2/default/images/1776545618029-7edcbeec-7584-4e4e-acd6-2b7e99bc19ee.png" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 </div>
@@ -634,11 +657,11 @@ document.getElementById("bookingForm").addEventListener("submit", function(e){
 
   // format pesan WA
   let pesan = `Halo HDG, saya ingin booking service 🚗%0A%0A
-Nama      : ${nama}%0A
-Alamat    : ${alamat}%0A
+Nama         : ${nama}%0A
+Alamat       : ${alamat}%0A
 Kendaraan : ${mobil}%0A
-Layanan   : ${layanan}%0A
-Keluhan   : ${keluhan}`;
+Layanan     : ${layanan}%0A
+Keluhan      : ${keluhan}`;
 
   // buka whatsapp
   window.open(`https://wa.me/62881025173774?text=${pesan}`, "_blank");
@@ -702,6 +725,22 @@ pagination:{
 el:".swiper-pagination",
 clickable:true
 }
+});
+</script>
+<script>
+new Swiper(".mySwiper",{
+  loop:true,
+  spaceBetween:10,
+
+  autoplay:{
+    delay:2500,
+    disableOnInteraction:false
+  },
+
+  breakpoints:{
+    0:{slidesPerView:1},
+    640:{slidesPerView:1}
+  }
 });
 </script>
 </body>
