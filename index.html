@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <title>HDG - Hendora Dynamic Garage</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -39,14 +39,22 @@ overflow:hidden;
 }
 .testimonial-track{
 display:flex;
-gap:20px;
+gap:28px;
 width:max-content;
-animation:scroll 100s linear infinite;
+animation:scroll 40s linear infinite;
+padding:10px 0;
 }
+
 @keyframes scroll{
 0%{transform:translateX(0)}
 100%{transform:translateX(-50%)}
 }
+
+/* hover pause */
+.testimonial-container:hover .testimonial-track{
+animation-play-state:paused;
+}
+
 /* ===== FLOATING BUTTON PREMIUM ===== */
 .wa-button{
 position:fixed;
@@ -108,6 +116,175 @@ transition:all 0.3s ease;
 .swiper-slide-active{
 opacity:1;
 transform:scale(1.05);
+}
+.layanan-section{
+padding:100px 5%;
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#0f172a);
+color:white;
+text-align:center;
+}
+
+.layanan-title{
+font-size:36px;
+font-weight:bold;
+margin-bottom:60px;
+background:linear-gradient(90deg,#fff,#ff2d2d,#ff00ff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.layanan-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+}
+
+/* CARD */
+
+.service-card{
+background:rgba(255,255,255,0.05);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+transition:0.4s;
+position:relative;
+overflow:hidden;
+}
+
+.service-card:hover{
+transform:translateY(-10px);
+box-shadow:
+0 0 20px #3b82f6,
+0 0 40px #9333ea;
+}
+
+/* ICON */
+
+.service-icon{
+font-size:40px;
+margin-bottom:15px;
+color:#3b82f6;
+}
+
+/* IMAGE */
+
+.service-img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+/* TEXT */
+
+.service-card h3{
+font-size:20px;
+margin-bottom:10px;
+}
+
+.service-card p{
+font-size:14px;
+opacity:0.9;
+}
+/* CTA BUTTON NEON */
+
+.cta-button{
+
+display:inline-block;
+padding:14px 40px;
+font-weight:bold;
+color:white;
+border-radius:40px;
+background:linear-gradient(90deg,#3b82f6,#60a5fa);
+
+box-shadow:
+0 0 10px #3b82f6,
+0 0 20px #3b82f6,
+0 0 40px #3b82f6;
+
+transition:0.4s;
+
+}
+
+.cta-button:hover{
+
+transform:scale(1.05);
+
+box-shadow:
+0 0 20px #60a5fa,
+0 0 40px #60a5fa,
+0 0 80px #60a5fa;
+
+}
+
+/* PANAH ANIMASI */
+
+.cta-arrow{
+
+width:24px;
+height:24px;
+margin:auto;
+
+border-right:4px solid #60a5fa;
+border-bottom:4px solid #60a5fa;
+
+transform:rotate(45deg);
+
+animation:arrowMove 1.4s infinite;
+
+filter:drop-shadow(0 0 8px #3b82f6);
+
+}
+
+@keyframes arrowMove{
+
+0%{
+transform:rotate(45deg) translateY(0);
+opacity:0.5;
+}
+
+50%{
+transform:rotate(45deg) translateY(12px);
+opacity:1;
+}
+
+100%{
+transform:rotate(45deg) translateY(0);
+opacity:0.5;
+}
+
+}
+.booking-section{
+
+position:relative;
+background:linear-gradient(135deg,#2563eb,#1e3a8a);
+overflow:hidden;
+
+}
+
+/* MOTIF MEGA MENDUNG */
+
+.booking-section::before{
+
+content:"";
+position:absolute;
+inset:0;
+
+background-image:url("data:image/svg+xml,%3Csvg width='300' height='160' viewBox='0 0 300 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 90 Q60 20 120 90 T240 90 T300 90' stroke='%23ffffff' stroke-opacity='0.08' stroke-width='4' fill='none'/%3E%3Cpath d='M10 120 Q60 50 120 120 T240 120 T300 120' stroke='%23ffffff' stroke-opacity='0.06' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+
+background-size:300px;
+background-repeat:repeat;
+
+pointer-events:none;
+
+}
+
+/* agar konten tetap di atas */
+
+.booking-section > *{
+position:relative;
+z-index:2;
 }
 </style>
 
@@ -181,8 +358,11 @@ Mobil Kusam? Saatnya Kinclong Lagi!
 Spesialis Cat • Las • Dempul • Compound Profesional
 </p>
 
-<a href="#booking" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-full shadow-lg transition">
-Booking Sekarang
+<div class="cta-arrow mb-6"></div>
+
+<a href="#booking"
+class="cta-button">
+Booking Service
 </a>
 <br>
 
@@ -238,15 +418,18 @@ ${item.nama} - ${item.mobil}
 </script>
 
 <!-- LAYANAN -->
-<section id="services" class="max-w-6xl mx-auto py-16 px-6">
+<section class="layanan-section">
 
-<h3 class="text-3xl font-bold text-center mb-10">
-Layanan Kami
-</h3>
+<h2 class="layanan-title">
+Layanan Profesional HDG
+</h2>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- CAT -->
-<div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 text-center transition hover:scale-105 w-full">
+<div class="layanan-container">
+
+<!-- SERVICE -->
+<div class="service-card reveal booking-section py-16">
+<i class="fas fa-car-crash service-icon"></i>
+
 <div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
 <div class="swiper-wrapper">
 
@@ -267,60 +450,44 @@ class="w-full aspect-[4/3] object-cover rounded-xl"
 
 </div>
 </div>
-
-<div class="text-4xl mb-2">🎨</div>
-
-<h4 class="text-xl font-bold mb-2">Cat Mobil</h4>
-
-<p class="text-gray-600">
-Finishing halus, warna tajam, dan hasil seperti mobil baru keluar showroom.
+<h3>Body Repair</h3>
+<p>
+Perbaikan body mobil penyok dengan teknik presisi agar kembali seperti baru.
 </p>
-
 </div>
 
-<!-- LAS -->
-<div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition">
-
+<!-- SERVICE -->
+<div class="service-card reveal">
+<i class="fas fa-spray-can service-icon"></i>
 <div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
 <div class="swiper-wrapper">
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776544034052-577a12e8-800f-4e85-aa82-980b56e03a76.jpg" 
-class="w-full aspect-[4/3] object-cover rounded-xl"
-  loading="lazy"
-  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
-  </div>
-
-<div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776544192232-bb2737f6-2471-4a05-a126-001c61454968.jpg" 
+<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg" 
 class="w-full aspect-[4/3] object-cover rounded-xl"
   loading="lazy"
   onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776544971395-d2ef2791-9a6b-44e0-9025-ba123ffd4844.jpg" 
+<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg"
 class="w-full aspect-[4/3] object-cover rounded-xl"
   loading="lazy"
   onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
+
 </div>
 </div>
-
-<div class="text-4xl mb-2">🔧</div>
-
-<h4 class="text-xl font-bold mb-2">Las Body & Dempul</h4>
-
-<p class="text-gray-600">
-Perbaikan body penyok dan karat dengan teknik presisi dan rapi.
+<h3>Repaint</h3>
+<p>
+Pengecatan ulang dengan warna presisi dan finishing glossy maksimal.
 </p>
-
 </div>
 
-<!-- COMPOUND -->
-<div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition">
-
+<!-- SERVICE -->
+<div class="service-card reveal">
+<i class="fas fa-star service-icon"></i>
 <div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
 <div class="swiper-wrapper">
 
@@ -347,26 +514,51 @@ class="w-full aspect-[4/3] object-cover rounded-xl"
 
 </div>
 </div>
-
-<div class="text-4xl mb-2">✨</div>
-
-<h4 class="text-xl font-bold mb-2">Compound & Poles</h4>
-
-<p class="text-gray-600">
-Menghilangkan baret halus dan membuat mobil kembali kinclong maksimal.
+<h3>Compound & Poles</h3>
+<p>
+Menghilangkan baret halus dan mengembalikan kilap cat mobil.
 </p>
+</div>
 
+<!-- SERVICE -->
+<div class="service-card reveal booking-section py-16">
+<i class="fas fa-tools service-icon"></i>
+<div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776544034052-577a12e8-800f-4e85-aa82-980b56e03a76.jpg" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
+  </div>
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776544192232-bb2737f6-2471-4a05-a126-001c61454968.jpg" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
+</div>
+
+<div class="swiper-slide">
+<img src="https://www.image2url.com/r2/default/images/1776544971395-d2ef2791-9a6b-44e0-9025-ba123ffd4844.jpg" 
+class="w-full aspect-[4/3] object-cover rounded-xl"
+  loading="lazy"
+  onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 </div>
+</div>
+<h3>Las Body</h3>
+<p>
+Perbaikan struktur body dengan teknik las rapi dan kuat.
+</p>
+</div>
+
+</div>
+
 </section>
 
-<!-- FIXED IMAGE -->
-<div>
-<img src="https://images.unsplash.com/photo-1616455579100-2ceaa4eb2d37" 
-class="w-full h-80 object-cover rounded-xl shadow-lg" 
-alt="Promo Bengkel"/>
-</div>
 
 <!-- ABOUT -->
 <section id="about" class="bg-white py-16 px-6 text-center">
@@ -378,119 +570,142 @@ Hendora Dynamic Garage (HDG) adalah bengkel spesialis perawatan dan perbaikan ta
 Kami percaya bahwa mobil bukan sekadar kendaraan — tapi juga cerminan karakter pemiliknya.
 Karena itu, setiap detail kami kerjakan dengan presisi, ketelitian, dan finishing maksimal.
 </p>
-
-</section>
-<!-- INFO BODY REPAIR SCROLL -->
-<section class="py-24 bg-gradient-to-br from-blue-600 to-blue-900 hover:scale-110 transition duration-300 
-hover:shadow-[0_0_20px_#3b82f6,0_0_40px_#9333ea">
-
-<h3 class="text-3xl font-bold text-center mb-10 
-bg-gradient-to-r from-white via-[#EF1A2D] to-[#FF00FF]
-bg-clip-text text-transparent">
-Tips & Insight Body Repair 🚗
-</h3>
-
-<div class="testimonial-container">
-  <div class="testimonial-track"></div>
+<br>
+<!-- FIXED IMAGE -->
+<div>
+<img src="https://images.unsplash.com/photo-1616455579100-2ceaa4eb2d37" 
+class="w-full h-80 object-cover rounded-xl shadow-lg" 
+alt="Promo Bengkel"/>
 </div>
 
 </section>
+<!-- INFO BODY REPAIR SCROLL -->
+<section class="py-24 bg-gradient-to-br from-blue-700 via-blue-800 to-black relative overflow-hidden">
+
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,_#3b82f6,_transparent_60%)]"></div>
+
+<div class="relative max-w-7xl mx-auto px-6">
+
+<h3 class="text-3xl md:text-4xl font-bold text-center mb-14 text-white tracking-wide">
+
+🚗 Tips & Insight Body Repair
+
+</h3>
+
+<div class="testimonial-container">
+<div class="testimonial-track"></div>
+</div>
+
+</div>
+
+</section>
+
 <script>
 document.addEventListener("DOMContentLoaded", function(){
 
 const insights = [
 {
 judul: "Kenapa Cat Mobil Bisa Kusam?",
-isi: "Paparan sinar UV, debu, dan hujan asam adalah penyebab utama cat mobil menjadi pudar dan kusam."
+isi: "Paparan sinar UV, debu, dan hujan asam adalah penyebab utama cat mobil menjadi pudar dan kusam.",
+gambar: "https://www.image2url.com/r2/default/images/1776953815515-9b14a98d-38f9-4d1d-94d2-3a03333afd5c.png"
 },
 {
 judul: "Pentingnya Dempul yang Presisi",
-isi: "Dempul yang tidak rata akan membuat permukaan bergelombang dan terlihat saat terkena cahaya."
+isi: "Dempul yang tidak rata akan membuat permukaan bergelombang dan terlihat saat terkena cahaya.",
+gambar: "https://www.image2url.com/r2/default/images/1776963123607-a0b27c92-3511-4b29-9da1-c55580b327b5.png"
 },
 {
 judul: "Perbedaan Cat Oven & Biasa",
-isi: "Cat oven menghasilkan finishing lebih halus, kuat, dan tahan lama dibanding cat biasa."
+isi: "Cat oven menghasilkan finishing lebih halus, kuat, dan tahan lama dibanding cat biasa.",
+gambar: "https://www.image2url.com/r2/default/images/1776963205250-6f75e103-8a93-49f5-8e21-061c897f71fe.png"
 },
 {
 judul: "Compound vs Poles",
-isi: "Compound digunakan untuk menghilangkan baret, sedangkan poles untuk finishing dan kilap maksimal."
+isi: "Compound digunakan untuk menghilangkan baret, sedangkan poles untuk finishing dan kilap maksimal.",
+gambar: "https://www.image2url.com/r2/default/images/1776963265452-d835ac59-84ff-458b-ba49-c78743ce8acb.png"
 },
 {
 judul: "Kenapa Warna Bisa Belang?",
-isi: "Kesalahan mixing warna atau teknik semprot yang tidak merata bisa menyebabkan belang."
+isi: "Kesalahan mixing warna atau teknik semprot yang tidak merata bisa menyebabkan belang.",
+gambar: "https://www.image2url.com/r2/default/images/1776963336060-f517a3e0-4899-4f09-bc31-2e25cc3c9336.png"
 },
 {
 judul: "Las Body yang Baik",
-isi: "Las yang rapi tidak hanya kuat tapi juga memudahkan proses finishing dan pengecatan."
+isi: "Las yang rapi tidak hanya kuat tapi juga memudahkan proses finishing dan pengecatan.",
+gambar: "https://www.image2url.com/r2/default/images/1776963676398-6c34321d-5106-4317-b252-17ed0f673749.png"
 },
 {
 judul: "Tips Merawat Cat Mobil",
-isi: "Cuci rutin, hindari parkir panas, dan lakukan coating agar cat tetap awet."
+isi: "Cuci rutin, hindari parkir panas, dan lakukan coating agar cat tetap awet.",
+gambar: "images/insight7.jpg"
 },
 {
 judul: "Baret Halus Bisa Hilang?",
-isi: "Ya, dengan teknik compound yang tepat, baret halus bisa dihilangkan tanpa repaint."
+isi: "Ya, dengan teknik compound yang tepat, baret halus bisa dihilangkan tanpa repaint.",
+gambar: "images/insight8.jpg"
 },
 {
 judul: "Kenapa Cat Mengelupas?",
-isi: "Biasanya karena permukaan tidak dibersihkan dengan benar sebelum pengecatan."
+isi: "Biasanya karena permukaan tidak dibersihkan dengan benar sebelum pengecatan.",
+gambar: "images/insight9.jpg"
 },
 {
 judul: "Finishing Glossy Maksimal",
-isi: "Finishing terbaik didapat dari kombinasi amplas halus, compound, dan poles berkualitas."
+isi: "Finishing terbaik didapat dari kombinasi amplas halus, compound, dan poles berkualitas.",
+gambar: "images/insight10.jpg"
 }
 ];
 
 const container = document.querySelector(".testimonial-track");
 
 if(container){
-  insights.forEach((item, index) => {
 
-    // mapping gambar berdasarkan judul
-    let img = "";
+insights.forEach((item)=>{
 
-    if(item.judul.toLowerCase().includes("cat")){
-      img = "https://source.unsplash.com/300x200/?car-paint";
-    } 
-    else if(item.judul.toLowerCase().includes("dempul") || item.judul.toLowerCase().includes("las")){
-      img = "https://source.unsplash.com/300x200/?car-repair";
-    } 
-    else if(item.judul.toLowerCase().includes("compound") || item.judul.toLowerCase().includes("poles")){
-      img = "https://source.unsplash.com/300x200/?car-detailing";
-    } 
-    else {
-      img = "https://source.unsplash.com/300x200/?automotive";
-    }
+container.innerHTML += `
 
-    container.innerHTML += `
-    <div class="bg-white p-5 rounded-xl shadow min-w-[260px] hover:scale-105 transition">
+<div class="bg-white/95 backdrop-blur rounded-2xl shadow-xl min-w-[300px] max-w-[300px] p-6
+hover:-translate-y-3 hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)]
+transition duration-500">
 
-      <img src="${img}" class="w-full h-32 object-cover rounded-lg mb-3">
+<div class="w-full aspect-square bg-white rounded-xl mb-3 flex items-center justify-center overflow-hidden">
 
-      <h4 class="font-bold text-lg mb-2 text-gray-800">
-        ${item.judul}
-      </h4>
+<img src="${item.gambar}" 
+class="w-60 max-h-60 object-contain cursor-pointer insight-img">
+</div>
 
-      <p class="text-gray-600 text-sm">
-        ${item.isi}
-      </p>
+<h4 class="font-bold text-lg mb-2 text-gray-800">
+${item.judul}
+</h4>
 
-    </div>
-    `;
-  });
+<p class="text-gray-600 text-sm">
+${item.isi}
+</p>
+
+</div>
+
+`;
+
+});
+
 }
 
 });
+
 </script>
-
 <!-- BOOKING -->
-<section id="booking" class="py-16 bg-gradient-to-br from-blue-600 to-blue-900">
+<section id="booking" class="booking-section py-16 bg-gradient-to-br from-blue-600 to-blue-900">
+<div class="max-w-xl mx-auto bg-gradient-to-b from-blue-900 via-blue-800 to-black text-center p-8 rounded-2xl shadow-xl">
 
-<div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
-
-<h2 class="text-2xl font-bold text-center mb-6">
-Booking Service
+<section class="py-24 bg-gradient-to-b from-blue-900 via-blue-800 to-black text-center">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+Booking Service Sekarang
 </h2>
+
+<p class="text-blue-200 mb-10">
+Isi form booking untuk konsultasi body repair kendaraan Anda
+</p>
+<div class="cta-arrow mb-6"></div>
 
 <form id="bookingForm" class="space-y-4">
 
@@ -510,12 +725,13 @@ Booking Service
 <textarea id="keluhan" placeholder="Sebutkan keluhan disini, lampiran foto dapat dikirim melalui Wa chat admin" class="w-full border p-3 rounded-lg"></textarea>
 
 <button class="w-full bg-green-500 text-white py-3 rounded-lg">
-Booking via WhatsApp
+Submit via WhatsApp
 </button>
 
 </form>
 
 </div>
+</section>
 </section>
 
 <!-- CONTACT -->
@@ -741,6 +957,97 @@ new Swiper(".mySwiper",{
     0:{slidesPerView:1},
     640:{slidesPerView:1}
   }
+});
+</script>
+<div id="imageModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+
+  <span id="closeModal" class="absolute top-6 right-8 text-white text-4xl cursor-pointer">
+    &times;
+  </span>
+
+  <img id="modalImg" class="max-w-[95%] max-h-[90%] rounded-lg shadow-2xl">
+
+</div>
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const closeModal = document.getElementById("closeModal");
+
+// klik gambar insight
+document.addEventListener("click", function(e){
+
+if(e.target.classList.contains("insight-img")){
+
+modal.classList.remove("hidden");
+modal.classList.add("flex");
+
+modalImg.src = e.target.src;
+
+}
+
+});
+
+// tombol X
+closeModal.addEventListener("click", function(){
+
+modal.classList.add("hidden");
+modal.classList.remove("flex");
+
+});
+
+// klik background gelap
+modal.addEventListener("click", function(e){
+
+if(e.target === modal){
+
+modal.classList.add("hidden");
+modal.classList.remove("flex");
+
+}
+
+});
+
+});
+
+</script>
+<script>
+
+function reveal(){
+
+var reveals = document.querySelectorAll(".reveal");
+
+for(var i=0;i<reveals.length;i++){
+
+var windowHeight = window.innerHeight;
+var elementTop = reveals[i].getBoundingClientRect().top;
+var elementVisible = 100;
+
+if(elementTop < windowHeight - elementVisible){
+reveals[i].classList.add("active");
+}
+
+}
+
+}
+
+window.addEventListener("scroll", reveal);
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+anchor.addEventListener("click", function(e){
+
+e.preventDefault();
+
+document.querySelector(this.getAttribute("href"))
+.scrollIntoView({
+behavior:"smooth"
+});
+
+});
+
 });
 </script>
 </body>
