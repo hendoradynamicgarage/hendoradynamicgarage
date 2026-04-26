@@ -41,7 +41,10 @@ overflow:hidden;
 display:flex;
 gap:28px;
 width:max-content;
-animation:scroll 40s linear infinite;
+
+/* UBAH BAGIAN INI */
+animation:scroll 100s linear infinite;
+
 padding:10px 0;
 }
 
@@ -457,7 +460,7 @@ Perbaikan body mobil penyok dengan teknik presisi agar kembali seperti baru.
 </div>
 
 <!-- SERVICE -->
-<div class="service-card reveal">
+<div class="service-card reveal booking-section py-16">
 <i class="fas fa-spray-can service-icon"></i>
 <div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
 <div class="swiper-wrapper">
@@ -486,7 +489,7 @@ Pengecatan ulang dengan warna presisi dan finishing glossy maksimal.
 </div>
 
 <!-- SERVICE -->
-<div class="service-card reveal">
+<div class="service-card reveal booking-section py-16">
 <i class="fas fa-star service-icon"></i>
 <div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
 <div class="swiper-wrapper">
@@ -637,22 +640,22 @@ gambar: "https://www.image2url.com/r2/default/images/1776963676398-6c34321d-5106
 {
 judul: "Tips Merawat Cat Mobil",
 isi: "Cuci rutin, hindari parkir panas, dan lakukan coating agar cat tetap awet.",
-gambar: "images/insight7.jpg"
+gambar: "https://www.image2url.com/r2/default/images/1777244698444-c095f4ea-cb24-4090-a59f-6c49c1d7df69.png"
 },
 {
 judul: "Baret Halus Bisa Hilang?",
 isi: "Ya, dengan teknik compound yang tepat, baret halus bisa dihilangkan tanpa repaint.",
-gambar: "images/insight8.jpg"
+gambar: "https://www.image2url.com/r2/default/images/1777244854837-e247b5f7-5579-448e-a7a4-12b19a69bbc5.blob"
 },
 {
 judul: "Kenapa Cat Mengelupas?",
 isi: "Biasanya karena permukaan tidak dibersihkan dengan benar sebelum pengecatan.",
-gambar: "images/insight9.jpg"
+gambar: "https://www.image2url.com/r2/default/images/1777245458560-affe4f17-5db1-43d6-b4ea-508a2206ef75.blob"
 },
 {
 judul: "Finishing Glossy Maksimal",
 isi: "Finishing terbaik didapat dari kombinasi amplas halus, compound, dan poles berkualitas.",
-gambar: "images/insight10.jpg"
+gambar: "https://www.image2url.com/r2/default/images/1777245633426-823afa99-d422-4534-bf44-fca9874563a7.png"
 }
 ];
 
@@ -661,9 +664,16 @@ const container = document.querySelector(".testimonial-track");
 if(container){
 
 insights.forEach((item)=>{
+container.innerHTML += cardHTML(item);
+});
 
-container.innerHTML += `
+// DUPLIKASI agar scroll mulus
+insights.forEach((item)=>{
+container.innerHTML += cardHTML(item);
+});
 
+function cardHTML(item){
+return `
 <div class="bg-white/95 backdrop-blur rounded-2xl shadow-xl min-w-[300px] max-w-[300px] p-6
 hover:-translate-y-3 hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)]
 transition duration-500">
@@ -683,11 +693,8 @@ ${item.isi}
 </p>
 
 </div>
-
 `;
-
-});
-
+}
 }
 
 });
