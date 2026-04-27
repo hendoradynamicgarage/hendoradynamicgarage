@@ -266,6 +266,7 @@ overflow:hidden;
 
 }
 
+
 /* MOTIF MEGA MENDUNG */
 
 .booking-section::before{
@@ -288,6 +289,83 @@ pointer-events:none;
 .booking-section > *{
 position:relative;
 z-index:2;
+}
+
+.neon-text{
+color:#93c5fd;
+animation:neonPulse 1.8s infinite alternate;
+}
+
+@keyframes neonPulse{
+
+0%{
+text-shadow:
+0 0 5px #3b82f6,
+0 0 10px #3b82f6;
+}
+
+100%{
+text-shadow:
+0 0 20px #3b82f6,
+0 0 40px #60a5fa,
+0 0 80px #60a5fa;
+}
+
+}
+@keyframes arrowMove{
+
+0%{
+transform:rotate(45deg) translateY(0);
+opacity:0.5;
+}
+
+50%{
+transform:rotate(45deg) translateY(12px);
+opacity:1;
+}
+
+100%{
+transform:rotate(45deg) translateY(0);
+opacity:0.5;
+}
+
+}
+.review-section{
+
+position:relative;
+background: linear-gradient(135deg, #2563eb, #9333ea, #ef4444);
+overflow:hidden;
+
+}
+
+
+/* MOTIF MEGA MENDUNG */
+
+.review-section::before{
+
+content:"";
+position:absolute;
+inset:0;
+
+background-image:url("data:image/svg+xml,%3Csvg width='300' height='160' viewBox='0 0 300 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 90 Q60 20 120 90 T240 90 T300 90' stroke='%23ffffff' stroke-opacity='0.08' stroke-width='4' fill='none'/%3E%3Cpath d='M10 120 Q60 50 120 120 T240 120 T300 120' stroke='%23ffffff' stroke-opacity='0.06' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+
+background-size:300px;
+background-repeat:repeat;
+
+pointer-events:none;
+
+}
+
+/* agar konten tetap di atas */
+
+.review-section > *{
+position:relative;
+z-index:2;
+}
+
+.neon-text{
+color:#93c5fd;
+animation:neonPulse 1.8s infinite alternate;
 }
 </style>
 
@@ -376,41 +454,88 @@ Booking Service
 
 <div class="swiper-wrapper" id="testimonialWrapper"></div>
 
-<!-- pagination -->
-<div class="swiper-pagination mt-6"></div>
-
-</div>
 <script>
+
 const testimonials = [
-{nama:"Rizky",mobil:"Civic Turbo",pesan:"Awalnya cat mobil saya kusam banget, setelah di HDG hasilnya kinclong seperti mobil baru keluar showroom. Detailnya rapi, puas banget!"},
-{nama:"Andi",mobil:"Avanza",pesan:"Body mobil saya sempat penyok cukup parah, tapi setelah diperbaiki di sini hasilnya balik seperti semula. Nggak kelihatan bekas sama sekali!"},
-{nama:"Rudi",mobil:"Brio",pesan:"Compound di HDG beda dari tempat lain, baret halus hilang semua dan finishingnya benar-benar glossy. Mantap!"},
-{nama:"Dimas",mobil:"Pajero",pesan:"Pelayanan cepat, hasil rapi, dan harganya masih masuk akal. Sekarang mobil saya kelihatan jauh lebih fresh."},
-{nama:"Fajar",mobil:"Innova",pesan:"Awalnya ragu, tapi ternyata hasilnya melebihi ekspektasi. Catnya halus banget dan warnanya hidup lagi."},
-{nama:"Bayu",mobil:"Fortuner",pesan:"Teknisi di sini kelihatan profesional. Dempul dan pengecatan benar-benar presisi, hasilnya nggak bergelombang sama sekali."},
-{nama:"Hendra",mobil:"Xenia",pesan:"Mobil lama saya jadi kelihatan seperti baru lagi. Bener-bener worth it untuk perawatan di HDG."},
-{nama:"Agus",mobil:"Jazz",pesan:"Saya suka banget sama hasil finishingnya. Kilapnya tahan lama dan terlihat premium."},
-{nama:"Wahyu",mobil:"Ertiga",pesan:"Pengerjaan cepat tapi tetap detail. Jarang ada bengkel yang bisa combine kualitas dan kecepatan seperti ini."},
-{nama:"Ilham",mobil:"HRV",pesan:"Recommended banget buat yang mau mobilnya tampil maksimal lagi. Hasilnya bikin percaya diri di jalan!"}
+{
+nama:"Andre",
+mobil:"Camry",
+foto:"https://www.image2url.com/r2/default/images/1777247833929-f9879b9e-f9c0-45f2-996e-b5a6078c6373.jpeg",
+pesan:"Awalnya cat mobil saya kusam banget, setelah di HDG hasilnya kinclong seperti mobil baru keluar showroom. Detailnya rapi, puas banget!"
+},
+{
+nama:"Diana",
+mobil:"BRV",
+foto:"https://www.image2url.com/r2/default/images/1777248176006-6bc0c703-e18e-406b-b76a-b8c8b0b2be99.jpeg",
+pesan:"Body mobil saya sempat penyok cukup parah, tapi setelah diperbaiki di sini hasilnya balik seperti semula. Nggak kelihatan bekas sama sekali!"
+},
+{
+nama:"Sella",
+mobil:"Honda Civic",
+foto:"https://www.image2url.com/r2/default/images/1777248242046-086c39f5-740a-43b0-a312-f2784062091a.jpeg",
+pesan:"Compound di HDG beda dari tempat lain, baret halus hilang semua dan finishingnya benar-benar glossy. Mantap!"
+},
+{
+nama:"Anton",
+mobil:"Kijang",
+foto:"https://www.image2url.com/r2/default/images/1777248286954-485f0ded-51b8-478b-99ed-ed73738e0108.jpeg",
+pesan:"Pelayanan cepat, hasil rapi, dan harganya masih masuk akal. Sekarang mobil saya kelihatan jauh lebih fresh."
+},
+{
+nama:"Berry",
+mobil:"Mazda CX3",
+foto:"https://www.image2url.com/r2/default/images/1777248332930-8507c3c6-54f0-4e44-aaa4-2a2659b4d90d.jpeg",
+pesan:"Awalnya ragu, tapi ternyata hasilnya melebihi ekspektasi. Catnya halus banget dan warnanya hidup lagi."
+},
+{
+nama:"Rival",
+mobil:"Daihatsu Ayla",
+foto:"https://www.image2url.com/r2/default/images/1777248370245-75e282d6-5792-4db4-b41e-3902b6be8c96.jpeg",
+pesan:"Teknisi di sini kelihatan profesional. Dempul dan pengecatan benar-benar presisi, hasilnya nggak bergelombang sama sekali."
+},
+{
+nama:"Intan",
+mobil:"Nissan Grand Livina",
+foto:"https://www.image2url.com/r2/default/images/1777248518176-c4533d17-63d3-4c6c-9ef9-85c381245f94.jpeg",
+pesan:"Mobil lama saya jadi kelihatan seperti baru lagi. Bener-bener worth it untuk perawatan di HDG."
+},
+{
+nama:"Tangkas",
+mobil:"Honda Brio",
+foto:"https://www.image2url.com/r2/default/images/1777248612177-11988642-8357-4820-98d3-32c82152a72b.jpeg",
+pesan:"Saya puas sekali sama hasil finishingnya. Kilapnya tahan lama dan terlihat premium."
+},
+{
+nama:"Handy",
+mobil:"Honda HR-V",
+foto:"https://www.image2url.com/r2/default/images/1777248650718-8cd0edee-944f-4b5c-8ca6-89b7e1f7362d.jpeg",
+pesan:"Pengerjaan cepat tapi tetap detail. Jarang ada bengkel yang bisa combine kualitas dan kecepatan seperti ini."
+},
+{
+nama:"Slamet",
+mobil:"Colt",
+foto:"https://www.image2url.com/r2/default/images/1777248687017-f02f8b60-3115-4166-9f01-e254daaa297a.jpeg",
+pesan:"Recommended banget buat yang mau mobilnya tampil maksimal lagi. Hasilnya bikin percaya diri di jalan!"
+}
 ];
 
 const wrapper = document.getElementById("testimonialWrapper");
 
-testimonials.forEach((item, index) => {
+testimonials.forEach((item) => {
 wrapper.innerHTML += `
 <div class="swiper-slide">
-<div class="bg-white p-6 rounded-2xl shadow-xl text-center transition hover:scale-105">
+<div class="bg-gray-100 review-section py-16 p-6 rounded-2xl shadow-xl text-center transition hover:scale-105">
 
-<img src="https://i.pravatar.cc/100?img=${index+20}" 
-class="w-16 h-16 rounded-full mx-auto mb-3">
+<img src="${item.foto}" 
+class="w-16 h-16 rounded-full mx-auto mb-3 object-cover border-2 border-blue-500">
 
 <div class="text-yellow-400 mb-2 text-lg">★★★★★</div>
 
-<p class="text-gray-600 text-sm leading-relaxed">
+<p class="text-white text-sm leading-relaxed">
 "${item.pesan}"
 </p>
 
-<h4 class="font-bold mt-3 text-gray-800">
+<h4 class="font-bold mt-3 text-white neon-text">
 ${item.nama} - ${item.mobil}
 </h4>
 
@@ -418,8 +543,8 @@ ${item.nama} - ${item.mobil}
 </div>
 `;
 });
-</script>
 
+</script>
 <!-- LAYANAN -->
 <section class="layanan-section">
 
@@ -431,20 +556,19 @@ Layanan Profesional HDG
 
 <!-- SERVICE -->
 <div class="service-card reveal booking-section py-16">
-<i class="fas fa-car-crash service-icon"></i>
-
+<i class="fas fa-spray-can service-icon"></i>
 <div class="swiper mySwiper mb-4 rounded-xl overflow-hidden">
 <div class="swiper-wrapper">
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg" 
+<img src="https://www.image2url.com/r2/default/images/1777250840794-ad4155c1-3925-4d6d-899d-f6038fecc3ac.jpeg" 
 class="w-full aspect-[4/3] object-cover rounded-xl"
   loading="lazy"
   onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
 </div>
 
 <div class="swiper-slide">
-<img src="https://www.image2url.com/r2/default/images/1776543375942-a3df1dde-bb6f-4622-a066-380af35f9e16.jpg"
+<img src="https://www.image2url.com/r2/default/images/1777251839689-20e2d309-bbc5-4aca-b0d2-7eac0f3b155d.jpeg"
 class="w-full aspect-[4/3] object-cover rounded-xl"
   loading="lazy"
   onerror="this.src='https://via.placeholder.com/400x300?text=HDG'"/>
@@ -951,19 +1075,16 @@ clickable:true
 });
 </script>
 <script>
-new Swiper(".mySwiper",{
-  loop:true,
-  spaceBetween:10,
-
-  autoplay:{
-    delay:2500,
-    disableOnInteraction:false
-  },
-
-  breakpoints:{
-    0:{slidesPerView:1},
-    640:{slidesPerView:1}
-  }
+document.querySelectorAll(".mySwiper").forEach((el) => {
+  new Swiper(el, {
+    loop: true,
+    spaceBetween: 10,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false
+    },
+    slidesPerView: 1
+  });
 });
 </script>
 <div id="imageModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
